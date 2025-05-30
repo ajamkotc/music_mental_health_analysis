@@ -86,8 +86,8 @@ This is a **multi-class classification problem**.
 
 ## 🚧 Project Status
 
-* ✅ Data loading and cleaning
-* ✅ Exploratory data analysis
+* 🔲 Data loading and cleaning
+* 🔲 Exploratory data analysis
 * 🔲 Feature engineering
 * 🔲 Model training and evaluation
 * 🔲 Reporting and visualization

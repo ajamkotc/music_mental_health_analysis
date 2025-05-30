@@ -17,6 +17,7 @@ dependencies:
   - ruff
   - pytest
   - pip:
+    - kaggle
     - python-dotenv
     - mkdocs
     - -e .
