@@ -10,12 +10,14 @@ dependencies:
   - ipython
   - jupyterlab
   - matplotlib
+  - missingno
   - notebook
   - numpy
   - pandas
   - scikit-learn
   - ruff
   - pytest
+  - ydata-profiling
   - pip:
     - kaggle
     - python-dotenv
