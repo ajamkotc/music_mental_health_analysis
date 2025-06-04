@@ -15,6 +15,7 @@ dependencies:
   - numpy
   - pandas
   - scikit-learn
+  - scikit-posthocs
   - ruff
   - pytest
   - ydata-profiling

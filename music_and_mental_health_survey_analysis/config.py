@@ -2,6 +2,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 from loguru import logger
+import numpy as np
 
 # Load environment variables from .env file if it exists
 load_dotenv()
@@ -22,6 +23,14 @@ REPORTS_DIR = PROJ_ROOT / "reports"
 FIGURES_DIR = REPORTS_DIR / "figures"
 
 KAGGLE_DATASET = 'catherinerasgaitis/mxmh-survey-results'
+
+DOMAIN_RULES = {
+    'Hours per day': {'min': 0, 'max': 16},
+    'Age': {'min': 9, 'max': np.inf}
+}
+
+CONFIG_DIR = PROJ_ROOT / "config"
+CONFIG_FILE = CONFIG_DIR / "column_types.json"
 
 # If tqdm is installed, configure loguru with tqdm.write
 # https://github.com/Delgan/loguru/issues/135
