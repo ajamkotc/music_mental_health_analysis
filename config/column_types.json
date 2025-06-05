@@ -13,22 +13,22 @@
         "type": "numeric"
     },
     "While working": {
-        "type": "categorical"
+        "type": "binary"
     },
     "Instrumentalist": {
-        "type": "categorical"
+        "type": "binary"
     },
     "Composer": {
-        "type": "categorical"
+        "type": "binary"
     },
     "Fav genre": {
         "type": "categorical"
     },
     "Exploratory": {
-        "type": "categorical"
+        "type": "binary"
     },
     "Foreign languages": {
-        "type": "categorical"
+        "type": "binary"
     },
     "BPM": {
         "type": "numeric"

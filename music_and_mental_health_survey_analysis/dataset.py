@@ -81,7 +81,7 @@ def encode_yes_no_cols(df: pd.DataFrame):
     encoded_cols = []
     for column in df.columns:
         if set(df[column].dropna().unique()).issubset({'Yes', 'No'}):
-            df[column] = df[column].map({'Yes': 1, 'No': 0})
+            df[column] = df[column].map({'Yes': 1.0, 'No': 0.0})
             encoded_cols.append(column)
 
     logger.success(f"Successfully encoded columns: {', '.join(encoded_cols)}")
@@ -107,6 +107,22 @@ def drop_static(df: pd.DataFrame) -> pd.DataFrame:
     logger.success(f"Successfully dropped columns: {', '.join(dropped)}")
     return df
 
+def drop_timestamp(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Drop timestamp columns.
+
+    Params:
+        df (DataFrame): Dataframe to process.
+    
+    Returns:
+        df (DataFrame): Dataframe with timestamp columns removed.
+    """
+    for col in df.columns:
+        if pd.api.types.is_datetime64_any_dtype(df[col]):
+            df = df.drop(col, axis=1)
+
+    return df
+
 def convert_dtypes(df: pd.DataFrame, dtype_map: dict = load_config_file()):
     """
     Converts columns in df to correct datatypes.
@@ -123,13 +139,16 @@ def convert_dtypes(df: pd.DataFrame, dtype_map: dict = load_config_file()):
         if col in df.columns:
             if dtype.get('type') == 'datetime':
                 df[col] = pd.to_datetime(df[col], errors='coerce', format=dtype.get('format'))
-            elif dtype.get('type') == 'categorical':
+            elif dtype.get('type') == 'categorical' or dtype.get('type') == 'binary':
                 df[col] = df[col].astype(dtype='category')
             elif dtype.get('type') == 'ordinal':
-                df[col] = df[col].astype(pd.CategoricalDtype(
+                df[col] = pd.Categorical(
+                    df[col],
                     categories=dtype.get('categories'),
-                    ordered=dtype.get('ordered'))
+                    ordered=dtype.get('ordered')
                 )
+            elif dtype.get('type') == 'numeric' or dtype.get('type') == 'binary':
+                df[col] = df[col].astype(float)
 
     logger.success("Converted column datatypes.")
     return df
@@ -145,6 +164,7 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
         df (DataFrame): Processed DataFrame.
     """
     df = convert_dtypes(df=df, dtype_map=load_config_file())
+    df = drop_timestamp(df)
     df = remove_outliers(df, domain_rules=DOMAIN_RULES) # Remove outliers
     df = encode_yes_no_cols(df) # Encode yes/no columns
     df = drop_static(df) # Drop static columns
