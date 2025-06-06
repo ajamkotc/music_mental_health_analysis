@@ -4,10 +4,16 @@ from loguru import logger
 from tqdm import tqdm
 import typer
 
+# Data manipulation
+import pandas as pd
+
+# Data visualization
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 from music_and_mental_health_survey_analysis.config import FIGURES_DIR, PROCESSED_DATA_DIR
 
 app = typer.Typer()
-
 
 @app.command()
 def main(

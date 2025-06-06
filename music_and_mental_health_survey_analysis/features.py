@@ -8,12 +8,15 @@ import typer
 import pandas as pd
 import numpy as np
 
-# Modeling
+# Imputing
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import KNNImputer, SimpleImputer
 
+# Oversampling
+from imblearn.over_sampling import SMOTENC
+
 from music_and_mental_health_survey_analysis.config import (
-    PROCESSED_DATA_DIR, CONFIG_FILE
+    PROCESSED_DATA_DIR, CONFIG_FILE, INTERIM_DATA_DIR
 )
 from music_and_mental_health_survey_analysis.dataset import (
     convert_dtypes, load_config_file
@@ -121,6 +124,9 @@ def impute_missing(df: pd.DataFrame, dtype_dict: dict = load_config_file()) -> p
     logger.success("Imputed missing values.")
     return pd.DataFrame(imputed_data, columns=numeric_cols+cat_cols)
 
+def balance(df: pd.DataFrame) -> pd.DataFrame:
+    pass
+
 @app.command()
 def main(
     input_path: Path = typer.Option(
@@ -133,11 +139,13 @@ def main(
     )
 ):
     df = load_csv(input_path)
-    df = convert_dtypes(df=df, dtype_map=load_config_file(CONFIG_FILE))
+    config_file = load_config_file()
+    df = convert_dtypes(df=df, dtype_map=config_file)
     df = impute_missing(df=df)
-    #df = encode(df)
+    df = convert_dtypes(df=df, dtype_map=config_file)
+    df = encode(df)
 
-    df.to_csv(output_path, index=False)
+    df.to_csv(INTERIM_DATA_DIR / 'encoded_features.csv', index=False)
 
 if __name__ == "__main__":
     app()
