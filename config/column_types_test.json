@@ -1,0 +1,279 @@
+{
+    "Timestamp": {
+        "type": "datetime",
+        "format": "%m/%d/%Y %H:%M:%S"
+    },
+    "Age": {
+        "type": "numeric"
+    },
+    "Primary streaming service": {
+        "type": "categorical"
+    },
+    "Hours per day": {
+        "type": "numeric"
+    },
+    "While working": {
+        "type": "binary"
+    },
+    "Instrumentalist": {
+        "type": "binary"
+    },
+    "Composer": {
+        "type": "binary"
+    },
+    "Fav genre": {
+        "type": "categorical"
+    },
+    "Exploratory": {
+        "type": "binary"
+    },
+    "Foreign languages": {
+        "type": "binary"
+    },
+    "BPM": {
+        "type": "numeric"
+    },
+    "Frequency [Classical]": {
+        "type": "ordinal",
+        "categories": [
+            "Never",
+            "Rarely",
+            "Sometimes",
+            "Very frequently"
+        ],
+        "ordered": true
+    },
+    "Frequency [Country]": {
+        "type": "ordinal",
+        "categories": [
+            "Never",
+            "Rarely",
+            "Sometimes",
+            "Very frequently"
+        ],
+        "ordered": true
+    },
+    "Frequency [EDM]": {
+        "type": "ordinal",
+        "categories": [
+            "Never",
+            "Rarely",
+            "Sometimes",
+            "Very frequently"
+        ],
+        "ordered": true
+    },
+    "Frequency [Folk]": {
+        "type": "ordinal",
+        "categories": [
+            "Never",
+            "Rarely",
+            "Sometimes",
+            "Very frequently"
+        ],
+        "ordered": true
+    },
+    "Frequency [Gospel]": {
+        "type": "ordinal",
+        "categories": [
+            "Never",
+            "Rarely",
+            "Sometimes",
+            "Very frequently"
+        ],
+        "ordered": true
+    },
+    "Frequency [Hip hop]": {
+        "type": "ordinal",
+        "categories": [
+            "Never",
+            "Rarely",
+            "Sometimes",
+            "Very frequently"
+        ],
+        "ordered": true
+    },
+    "Frequency [Jazz]": {
+        "type": "ordinal",
+        "categories": [
+            "Never",
+            "Rarely",
+            "Sometimes",
+            "Very frequently"
+        ],
+        "ordered": true
+    },
+    "Frequency [K pop]": {
+        "type": "ordinal",
+        "categories": [
+            "Never",
+            "Rarely",
+            "Sometimes",
+            "Very frequently"
+        ],
+        "ordered": true
+    },
+    "Frequency [Latin]": {
+        "type": "ordinal",
+        "categories": [
+            "Never",
+            "Rarely",
+            "Sometimes",
+            "Very frequently"
+        ],
+        "ordered": true
+    },
+    "Frequency [Lofi]": {
+        "type": "ordinal",
+        "categories": [
+            "Never",
+            "Rarely",
+            "Sometimes",
+            "Very frequently"
+        ],
+        "ordered": true
+    },
+    "Frequency [Metal]": {
+        "type": "ordinal",
+        "categories": [
+            "Never",
+            "Rarely",
+            "Sometimes",
+            "Very frequently"
+        ],
+        "ordered": true
+    },
+    "Frequency [Pop]": {
+        "type": "ordinal",
+        "categories": [
+            "Never",
+            "Rarely",
+            "Sometimes",
+            "Very frequently"
+        ],
+        "ordered": true
+    },
+    "Frequency [R&B]": {
+        "type": "ordinal",
+        "categories": [
+            "Never",
+            "Rarely",
+            "Sometimes",
+            "Very frequently"
+        ],
+        "ordered": true
+    },
+    "Frequency [Rap]": {
+        "type": "ordinal",
+        "categories": [
+            "Never",
+            "Rarely",
+            "Sometimes",
+            "Very frequently"
+        ],
+        "ordered": true
+    },
+    "Frequency [Rock]": {
+        "type": "ordinal",
+        "categories": [
+            "Never",
+            "Rarely",
+            "Sometimes",
+            "Very frequently"
+        ],
+        "ordered": true
+    },
+    "Frequency [Video game music]": {
+        "type": "ordinal",
+        "categories": [
+            "Never",
+            "Rarely",
+            "Sometimes",
+            "Very frequently"
+        ],
+        "ordered": true
+    },
+    "Anxiety": {
+        "type": "ordinal",
+        "categories": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+        ],
+        "ordered": true
+    },
+    "Depression": {
+        "type": "ordinal",
+        "categories": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+        ],
+        "ordered": true
+    },
+    "Insomnia": {
+        "type": "ordinal",
+        "categories": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+        ],
+        "ordered": true
+    },
+    "OCD": {
+        "type": "ordinal",
+        "categories": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+        ],
+        "ordered": true
+    },
+    "Music effects": {
+        "type": "ordinal",
+        "categories": [
+            "Worsen",
+            "No effect",
+            "Improve"
+        ],
+        "ordered": true
+    },
+    "Permissions": {
+        "type": "object"
+    },
+    "improved": {
+        "type": "binary"
+    }
+}

@@ -1,0 +1,70 @@
+{
+    "binary_music_effect": {
+        "input_column": "Music effects",
+        "output_column": "improved",
+        "transform": "col_to_binary",
+        "params": {
+            "positive_class": "Improve",
+            "dtype": "binary"
+        }
+    },
+    "binary_while_working": {
+        "input_column": "While working",
+        "transform": "col_to_binary",
+        "params": {
+            "positive_class": "Yes"
+        }
+    },
+    "binary_instrumentalist": {
+        "input_column": "Instrumentalist",
+        "transform": "col_to_binary",
+        "params": {
+            "positive_class": "Yes"
+        }
+    },
+    "binary_composer": {
+        "input_column": "Composer",
+        "transform": "col_to_binary",
+        "params": {
+            "positive_class": "Yes"
+        }
+    },
+    "binary_exploratory": {
+        "input_column": "Exploratory",
+        "transform": "col_to_binary",
+        "params": {
+            "positive_class": "Yes"
+        }
+    },
+    "binary_foreign_languages": {
+        "input_column": "Foreign languages",
+        "transform": "col_to_binary",
+        "params": {
+            "positive_class": "Yes"
+        }
+    },
+    "ordinal_frequency_genres": {
+        "input_column": ["Frequency [Classical]", "Frequency [Country]", "Frequency [EDM]", "Frequency [Folk]",
+            "Frequency [Gospel]", "Frequency [Hip hop]", "Frequency [Jazz]",
+            "Frequency [K pop]", "Frequency [Latin]", "Frequency [Lofi]",
+            "Frequency [Metal]", "Frequency [Pop]", "Frequency [R&B]",
+            "Frequency [Rap]", "Frequency [Rock]", "Frequency [Video game music]"],
+        "transform": "ordinal_encode",
+        "params": {
+            "mapping": {
+                "Never": 0,
+                "Rarely": 1,
+                "Sometimes": 2,
+                "Very frequently": 3
+            }
+        }
+    },
+    "dummy_primary_streaming_service": {
+        "input_column" : "Primary streaming service",
+        "transform": "dummy_encode"
+    },
+    "dummy_fav_genre": {
+        "input_column": "Fav genre",
+        "transform": "dummy_encode"
+    }
+}

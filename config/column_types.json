@@ -140,5 +140,8 @@
     },
     "Permissions": {
         "type": "object"
+    },
+    "improved": {
+        "type": "ordinal"
     }
 }

@@ -1,0 +1,13 @@
+{
+    "target_column": "improved",
+    "balance_strategy": [
+        {
+            "method": "tomek",
+            "type": "undersample"
+        },
+        {
+            "method": "SMOTE-NC",
+            "type": "oversample"
+        }
+    ]
+}

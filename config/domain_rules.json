@@ -1,0 +1,9 @@
+{
+    "Hours per day": {
+        "min": 0, 
+        "max": 16
+    },
+    "Age": {
+        "min": 9
+    }
+}
