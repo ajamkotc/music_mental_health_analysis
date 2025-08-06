@@ -17,6 +17,7 @@ dependencies:
   - pandas
   - scikit-learn
   - scikit-posthocs
+  - shap
   - ruff
   - pytest
   - ydata-profiling

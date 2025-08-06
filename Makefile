@@ -15,16 +15,12 @@ PYTHON_INTERPRETER = python
 .PHONY: requirements
 requirements:
 	conda env update --name $(PROJECT_NAME) --file environment.yml --prune
-	
-
-
 
 ## Delete all compiled Python files
 .PHONY: clean
 clean:
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
-
 
 ## Lint using ruff (use `make format` to do formatting)
 .PHONY: lint
@@ -38,13 +34,10 @@ format:
 	ruff check --fix
 	ruff format
 
-
-
 ## Run tests
 .PHONY: test
 test:
 	python -m pytest tests
-
 
 ## Set up Python interpreter environment
 .PHONY: create_environment
@@ -52,9 +45,6 @@ create_environment:
 	conda env create --name $(PROJECT_NAME) -f environment.yml
 	
 	@echo ">>> conda env created. Activate with:\nconda activate $(PROJECT_NAME)"
-	
-
-
 
 #################################################################################
 # PROJECT RULES                                                                 #
@@ -64,7 +54,26 @@ create_environment:
 ## Make dataset
 .PHONY: data
 data: requirements
-	$(PYTHON_INTERPRETER) music_and_mental_health_survey_analysis/dataset.py
+	$(PYTHON_INTERPRETER) -m music_and_mental_health_survey_analysis.dataset
+
+## Clean raw data
+.PHONY: clean_data
+clean_data: data
+	$(PYTHON_INTERPRETER) -m music_and_mental_health_survey_analysis.cleaning
+
+## Engineer features
+.PHONY: create_features
+create_features: clean_data
+	$(PYTHON_INTERPRETER) music_and_mental_health_survey_analysis/features.py
+
+## Sample features
+.PHONY: sample_features
+sample_features: create_features
+	$(PYTHON_INTERPRETER) music_and_mental_health_survey_analysis/sampling.py
+
+## Run full pipeline
+.PHONY: build_data
+build_data: sample_features
 
 
 #################################################################################

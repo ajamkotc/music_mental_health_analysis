@@ -47,14 +47,11 @@ from imblearn.under_sampling import TomekLinks
 
 # Project files and directories
 from music_and_mental_health_survey_analysis.config import (
-    load_csv, load_config_file,
     PROCESSED_DATA_DIR, SAMPLING_CONFIG_FILE
 )
 from music_and_mental_health_survey_analysis.cleaning import list_continuous_categorical
-
-from music_and_mental_health_survey_analysis.features import (
-    is_clean
-)
+from music_and_mental_health_survey_analysis.utils import load_config_file, load_csv
+from music_and_mental_health_survey_analysis.features import is_clean
 
 app = typer.Typer()
 
@@ -209,7 +206,7 @@ def main(
         help='Transformed dataset to be used for sampling.'
     ),
     output_path: Path = typer.Option(
-        default=PROCESSED_DATA_DIR / "sampled.csv",
+        default=PROCESSED_DATA_DIR,
         help='Output path for sampled dataset.'
     )
 ):
@@ -240,7 +237,17 @@ def main(
     df = balance(df=df, sampling_config=sampling_config, sample_functions=SAMPLE_FUNCTIONS)
 
     logger.success('Data balanced.')
-    df.to_csv(output_path, index=False)
+
+    # Split into features and labels to save
+
+    logger.info(f"Saving features and labels to {output_path}")
+    X = df.drop(labels=['improved'], axis=1)
+    y = df['improved']
+
+    X.to_csv(output_path / 'features.csv', index=False)
+    y.to_csv(output_path / 'labels.csv', index=False)
+
+    logger.success('Successfully saved data.')
 
 if __name__ == '__main__':
     app()

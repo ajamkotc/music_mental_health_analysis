@@ -40,10 +40,10 @@ import numpy as np
 
 # Project files and directories
 from music_and_mental_health_survey_analysis.config import (
-    load_csv, load_config_file,
     PROCESSED_DATA_DIR, FEATURE_CONFIG_FILE, CONFIG_FILE, CONFIG_DIR
 )
 from music_and_mental_health_survey_analysis.cleaning import convert_dtypes
+from music_and_mental_health_survey_analysis.utils import load_config_file, load_csv
 
 app = typer.Typer()
 
@@ -89,7 +89,8 @@ def dummy_encode(df: pd.DataFrame, input_col: str, **kwargs) -> pd.DataFrame:
         dummies = pd.get_dummies(
             df[input_col],
             dtype=float,
-            prefix=params.get('prefix', input_col))
+            prefix=params.get('prefix', input_col),
+            drop_first=True)
 
         # Combine and drop original column
         df = pd.concat([df, dummies], axis=1)

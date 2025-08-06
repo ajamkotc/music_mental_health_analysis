@@ -44,10 +44,11 @@ from sklearn.compose import ColumnTransformer
 from sklearn.impute import KNNImputer, SimpleImputer
 
 # Project files and directors
-from .config import (
-    load_config_file, load_csv,
+from music_and_mental_health_survey_analysis.config import (
     DOMAIN_RULES, RAW_DATA_DIR, PROCESSED_DATA_DIR, CONFIG_FILE
 )
+
+from music_and_mental_health_survey_analysis.utils import load_config_file, load_csv
 
 app = typer.Typer()
 
@@ -326,15 +327,6 @@ def clean(
 
     logger.success("Successfully cleaned dataset.")
     df.to_csv(output_path, index=False) # Save dataframe
-
-@app.command()
-def main():
-    """
-    Main entry point for the cleaning script. 
-    
-    Calls the clean() function to perform data cleaning operations.
-    """
-    clean()
 
 if __name__ == '__main__':
     app()
