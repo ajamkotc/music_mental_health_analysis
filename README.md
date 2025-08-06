@@ -1,7 +1,7 @@
 # 🎧 Music & Mental Health: Predictive Analysis of Emotional Outcomes
 
-**Author:** \[Arsen Jamkotchian]
-**Project Type:** Data Science Portfolio
+**Author:** \[Arsen Jamkotchian]  
+**Project Type:** Data Science Portfolio  
 **Directory Structure:** [cookiecutter-data-science](https://drivendata.github.io/cookiecutter-data-science/)
 
 ## 📘 Project Overview
@@ -15,6 +15,30 @@ The project covers the full data science lifecycle:
 * Feature engineering
 * Model training and evaluation
 * Interpretation and communication of results
+
+## 🚀 How to Run
+This project is fully managed with `make`. You'll need:
+- `conda` (Miniconda or Anaconda)
+- `make` (typically pre-installed on Unix/macOS; installable via WSL on Windows)
+
+🔧 1. Clone the repository
+```bash
+git clone https://github.com/ajamkotc/music_mental_health_analysis.git
+cd music_mental_health_analysis
+```
+📈 2. Run the full pipeline
+```bash
+make build_model
+```
+🧪 3. Run tests (optional)
+```bash
+make test
+```
+🧹 4. Format code and lint (optional)
+```bash
+make format   # Auto-fix and format code
+make lint     # Check code style
+```
 
 ## 📂 Repository Structure
 
@@ -38,7 +62,7 @@ This repository follows the [cookiecutter-data-science](https://drivendata.githu
 ├── reports
 │   └── figures         # Generated graphics and plots
 │
-├── src
+├── music_and_mental_health_survey_analysis
 |   ├── config          # Config variables
 |   ├── utils           # Utility functions
 │   ├── dataset         # Data loading
@@ -60,13 +84,12 @@ This repository follows the [cookiecutter-data-science](https://drivendata.githu
 Can we predict the impact of music listening on an individual's mental health?
 Target variable:
 
-* **mental\_health\_effect** (categorical):
+* **improved** (binary):
 
-  * `Improved`
-  * `No effect`
-  * `Worsened`
+  * `0`
+  * `1`
 
-This is a **multi-class classification problem**.
+This is a **binary classification problem**.
 
 ## 📊 Dataset
 
@@ -89,15 +112,6 @@ This is a **multi-class classification problem**.
 * Train and evaluate classification models (e.g., Random Forest, Gradient Boosting, Logistic Regression)
 * Communicate findings visually and narratively
 
-## 🚧 Project Status
-
-* 🔲 Data loading and cleaning
-* 🔲 Exploratory data analysis
-* 🔲 Feature engineering
-* 🔲 Model training and evaluation
-* 🔲 Reporting and visualization
-* 🔲 Final portfolio writeup
-
 ## 🛠️ Technologies Used
 
 * Python (Pandas, scikit-learn, scipy, Matplotlib, Seaborn)
@@ -105,11 +119,23 @@ This is a **multi-class classification problem**.
 * cookiecutter-data-science project structure
 * Kaggle dataset integration
 
+## 📊 Model Performance
+| Model                        | Accuracy | Precision | Recall | F1 Score | ROC_AUC |
+| ---------------------------- | -------- | --------- | -------|----------|-------- |
+| Gradient Boosting Classifier | 0.79     | 0.77      | 0.83   | 0.79     |  0.86   |
+|
+
+
 ## 📌 Future Work
 
 * Experiment with NLP on open-ended responses
 * Explore genre-specific effects in more depth
 * Create a web dashboard for interactive data exploration
+
+## 📎 Links
+
+* [LinkedIn](https://www.linkedin.com/in/arsenjamkotchian/)
+* [GitHub](https://www.github.com/ajamkotc/)
 
 ## 📄 License
 
