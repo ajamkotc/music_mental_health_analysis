@@ -66,11 +66,11 @@ This repository follows the [cookiecutter-data-science](https://drivendata.githu
 |   ├── config          # Config variables
 |   ├── utils           # Utility functions
 │   ├── dataset         # Data loading
-|   ├── cleaning        # Data cleaning
+|   ├── cleaning        # Data cleaning scripts
 │   ├── features        # Feature engineering scripts
 |   ├── sampling        # Over and undersampling scripts
 │   └── modeling
-|   |   |── train       # Train model
+|   |   |── train       # Trains model
 |   |   └── predict     # Generate predictions
 │
 ├── .gitignore
@@ -119,11 +119,79 @@ This is a **binary classification problem**.
 * cookiecutter-data-science project structure
 * Kaggle dataset integration
 
+## 🧼 Data Cleaning
+
+To prepare the dataset for analysis and modeling, a comprehensive data cleaning pipeline was developed and validated. The cleaning process ensures high data quality and supports accurate modeling.
+
+### Key Cleaning Steps
+
+* ✅ **Removed static columns**: Dropped columns where all values were identical, contributing no useful variance.
+
+* ✅ **Handled missing values**:
+
+  * *Mental health indicators* (e.g., OCD) were left as-is if missingness was minimal.
+  * *BPM* (beats per minute) was imputed using **KNN imputation**, leveraging similarities across other features to estimate realistic values.
+
+* ✅ **Converted column types**: Ensured appropriate types (e.g., integers for ordinal scores, categorical for survey responses) to facilitate encoding and modeling.
+
+* ✅ **Outlier removal**:
+
+  * Detected and removed extreme outliers in continuous features (e.g., respondents claiming to listen to music 24 hours/day or BPM values in the millions).
+  * Focused particularly on `Hours per day` and `BPM` fields using interquartile range (IQR) thresholds.
+
+### Example Outcomes
+
+* ✅ Cleaned BPM values followed a **normal-like distribution** centered around realistic human tempos (see figure below).
+![BPM Pre and Post Cleaning](reports/figures/cleaning_evaluations/bar_bpm_pre_post_cleaning.png)
+* ✅ Extreme `hours per day` listening values were capped or excluded to preserve interpretability and modeling integrity.
+![Hours per Day Pre and Post Cleaning](reports/figures/cleaning_evaluations/box_hours_pre_post_cleaning.png)
+
+## 📊 Exploratory Data Analysis (EDA) Summary
+
+Our initial exploration of the *Music & Mental Health* dataset (Kaggle) focused on understanding the structure, distribution, and quality of the data. Key goals included identifying missing values, characterizing variable types, and uncovering initial patterns between music preferences and mental health indicators.
+
+### 🧾 Dataset Overview
+
+* **736 survey responses** collected, with a mix of categorical and ordinal variables.
+* Minimal missingness overall; *BPM* (beats per minute) had \~15% missing, requiring imputation.
+* Majority of features are `object`-typed, indicating a need for conversion and encoding prior to modeling.
+
+### 🧠 Mental Health Features
+
+* The variables `Anxiety`, `Depression`, `Insomnia`, and `OCD` are scored on a **0–10 scale**, treated as ordinal.
+* Distribution appears normal-ish, with the majority of scores clustering between 2 and 8.
+![Mental Health Distributions](reports/figures/mental_health_distributions.png)
+
+### 🧍 Demographics & Listening Habits
+
+* **Average age**: \~25 years old, mostly between 18–27.
+* **Hours of music per day**: mean ≈ 3.7 hours, but some extreme outliers (e.g., 0 and 24 hours).
+* **BPM** contains several extreme outliers (millions+) that were cleaned during preprocessing.
+
+### 🎵 Genre Listening Frequency
+
+* Frequency categories span from *Never* to *Very frequently* for each genre.
+* **Rock**, **Pop**, and **Metal** are the most commonly listened-to genres.
+* **Gospel**, **Latin**, and **K-Pop** were most often marked *Never*.
+* Only **Rock** and **Pop** had higher "Very frequently" responses than "Never".
+![Favorite genre counts](reports/figures/favorite_genres_counts.png)
+![Average Music Effect by Favorite Genre](reports/figures/avg_music_effect_fav_genre.png)
+
+### 🎹 Instrumental and Listening Style
+
+* Most respondents are **not instrumentalists or composers**.
+* There’s a strong positive correlation between being an instrumentalist and being a composer.
+* \~80% listen to music while working.
+![Box Plot of Hours per Music Effect](reports/figures/box_plot_hours_music_effect.png)
+* \~70% describe their listening style as **exploratory**, suggesting openness to new music.
+
 ## 📊 Model Performance
 | Model                        | Accuracy | Precision | Recall | F1 Score | ROC_AUC |
 | ---------------------------- | -------- | --------- | -------|----------|-------- |
 | Gradient Boosting Classifier | 0.79     | 0.77      | 0.83   | 0.79     |  0.86   |
 |
+
+![Gradient Boosting Classifier ROC Curves](reports/figures/modeling_evaluations/gradient_boosting_roc_base_tuned.png)
 
 
 ## 📌 Future Work
