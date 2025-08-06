@@ -92,7 +92,7 @@ def evaluate_train(estimator, X_train: pd.DataFrame, y_train: pd.Series, cv, sco
 
     Perform 
     """
-    logger.info('Evaluating training metrics.')
+    logger.info('Evaluating training performance.')
     cv_results = cross_validate(
         estimator=estimator,
         X=X_train,

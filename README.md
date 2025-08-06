@@ -39,10 +39,15 @@ This repository follows the [cookiecutter-data-science](https://drivendata.githu
 │   └── figures         # Generated graphics and plots
 │
 ├── src
-│   ├── data            # Data loading, cleaning, and transformation scripts
+|   ├── config          # Config variables
+|   ├── utils           # Utility functions
+│   ├── dataset         # Data loading
+|   ├── cleaning        # Data cleaning
 │   ├── features        # Feature engineering scripts
-│   ├── models          # Training, prediction, and evaluation scripts
-│   └── visualization   # Scripts for generating plots and EDA
+|   ├── sampling        # Over and undersampling scripts
+│   └── modeling
+|   |   |── train       # Train model
+|   |   └── predict     # Generate predictions
 │
 ├── .gitignore
 ├── README.md
@@ -69,7 +74,7 @@ This is a **multi-class classification problem**.
 
 **Key Features:**
 
-* Demographic information (age, country, etc.)
+* Demographic information (age)
 * Music listening habits (genres, hours per day, whether they listen while studying/working)
 * Mental health indicators and perceived effects of music
 
@@ -81,7 +86,7 @@ This is a **multi-class classification problem**.
 
 * Clean and preprocess messy survey data
 * Understand relationships between listening habits and mental health outcomes
-* Train and evaluate classification models (e.g., Random Forest, XGBoost, Logistic Regression)
+* Train and evaluate classification models (e.g., Random Forest, Gradient Boosting, Logistic Regression)
 * Communicate findings visually and narratively
 
 ## 🚧 Project Status
@@ -95,14 +100,10 @@ This is a **multi-class classification problem**.
 
 ## 🛠️ Technologies Used
 
-* Python (Pandas, scikit-learn, XGBoost, Matplotlib, Seaborn)
+* Python (Pandas, scikit-learn, scipy, Matplotlib, Seaborn)
 * Jupyter Notebooks
 * cookiecutter-data-science project structure
 * Kaggle dataset integration
-
-## 📈 Example Results (To Be Added)
-
-*This section will include charts and metrics once the model is finalized.*
 
 ## 📌 Future Work
 

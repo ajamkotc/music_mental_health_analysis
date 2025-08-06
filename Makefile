@@ -64,16 +64,21 @@ clean_data: data
 ## Engineer features
 .PHONY: create_features
 create_features: clean_data
-	$(PYTHON_INTERPRETER) music_and_mental_health_survey_analysis/features.py
+	$(PYTHON_INTERPRETER) -m music_and_mental_health_survey_analysis.features
 
 ## Sample features
 .PHONY: sample_features
 sample_features: create_features
-	$(PYTHON_INTERPRETER) music_and_mental_health_survey_analysis/sampling.py
+	$(PYTHON_INTERPRETER) -m music_and_mental_health_survey_analysis.sampling
+
+## Train model
+.PHONY: train_model
+train_model: sample_features
+	$(PYTHON_INTERPRETER) -m music_and_mental_health_survey_analysis.modeling.train
 
 ## Run full pipeline
-.PHONY: build_data
-build_data: sample_features
+.PHONY: build_model
+build_model: sample_features
 
 
 #################################################################################

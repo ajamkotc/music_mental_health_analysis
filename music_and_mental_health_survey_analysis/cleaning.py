@@ -171,7 +171,7 @@ def drop_static(df: pd.DataFrame) -> pd.DataFrame:
 
 def list_continuous_categorical(
         df: pd.DataFrame,
-        dtype_dict: dict = load_config_file(),
+        dtype_dict: dict = load_config_file(CONFIG_FILE),
         encoded: bool = False) -> tuple:
     """
     Generates a tuple of continuous and categorical columns.
@@ -229,7 +229,7 @@ def list_continuous_categorical(
 
     return (numeric_cols, categorical_cols)
 
-def convert_dtypes(df: pd.DataFrame, dtype_map: dict = load_config_file()):
+def convert_dtypes(df: pd.DataFrame, dtype_map: dict = load_config_file(CONFIG_FILE)):
     """
     Converts dataframe columns 
 
